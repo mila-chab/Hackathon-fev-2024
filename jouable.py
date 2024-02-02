@@ -1,5 +1,4 @@
 from random import *
-from time import *
 import pygame
 
 SIZE = 3 
@@ -93,9 +92,9 @@ def graphicplate(t, screen):
         color = (40,58,82)
         for y in range(SIZE):
             for x in range(SIZE):
-                if t[x*SIZE + y] != 0:
+                if t[x + y*SIZE] != 0:
                     pygame.draw.rect(screen, color, pygame.Rect(16+x*146, 16+y*146, 142, 142), border_radius=20)
-                    screen.blit( font.render(str(t[x*SIZE + y]),1 ,(255,255,255)) , (70 + 144*x , 58 + 144*y) )
+                    screen.blit( font.render(str(t[x + y*SIZE]),1 ,(255,255,255)) , (70 + 144*x , 58 + 144*y) )
                     
 #fonction de jeu
 def play() :
