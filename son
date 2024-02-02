@@ -1,1 +1,14 @@
+import pygame
+import time
 
+def play_sound(file_path):
+    pygame.mixer.init()
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
+
+def stop_sound():
+    pygame.mixer.music.stop()
+
+play_sound("tetris.mp3")
+time.sleep(10)
+stop_sound()
