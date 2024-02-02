@@ -169,6 +169,8 @@ def play() :
                             time.sleep(1)
                 #text = font.render(string_taquin(t), True, blue, white)
         if t == [0,1,2,3,4,5,6,7,8] :
+            stop_sound()
+            play_sound("balkany oui.mp3")
             pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
             pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(16, 16, 584, 584))
             display_victory_image()
