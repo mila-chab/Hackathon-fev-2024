@@ -2,6 +2,7 @@ from random import *
 import pygame
 from Dijkstra import solve_Astar, good_grid, random_grid, is_solvable
 import time
+import tkinter as tk
 
 SIZE = 3 
 taquin = random_grid()
@@ -109,6 +110,8 @@ def play_sound(file_path):
 def stop_sound():
     pygame.mixer.music.stop()
 
+
+
 #fonction de jeu
 def play() :
     t = taquin #a remplacer par rendu de la fonction random taquin quand elle existera
@@ -125,6 +128,16 @@ def play() :
     textRect = text.get_rect()
     textRect.center = (300, 300)
     play_sound("tetris.mp3")
+    def display_victory_image():
+        victory_image = pygame.image.load("balkabravo.png")  # Ajoutez le chemin complet si nécessaire
+        new_width, new_height = 600, 600
+        resized_victory_image = pygame.transform.scale(victory_image, (new_width, new_height))
+
+        image_width, image_height = resized_victory_image.get_size()
+        x_coordinate = (600 - image_width) // 4
+        y_coordinate = (600 - image_height) // 4
+        display_surface.blit(resized_victory_image, (x_coordinate, y_coordinate))        
+        pygame.display.update()
     while running :
        # display_surface.fill(white)
        # display_surface.blit(text, textRect)
@@ -150,20 +163,18 @@ def play() :
                             t = t_
                             pygame.init()
                             pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
-                            pygame.draw.rect(display_surface, marroon_light, pygame.Rect(16, 16, 584, 584))
+                            pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(16, 16, 584, 584))
                             graphicplate(t, display_surface)
                             pygame.display.update()
                             time.sleep(1)
                 #text = font.render(string_taquin(t), True, blue, white)
         if t == [0,1,2,3,4,5,6,7,8] :
-            running = False
-            import tkinter as tk
-            fenetre = tk.Tk()
-            photo = tk.PhotoImage(file='balkany.jpg')
-            label = tk.Label(fenetre, image=photo)
-            label.pack()
-             
-            fenetre.mainloop()
+            pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
+            pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(16, 16, 584, 584))
+            display_victory_image()
+            time.sleep(2000)
+            running=False
+
         graphicplate(t, display_surface)
         pygame.display.update()
 
