@@ -37,13 +37,13 @@ def moveable_left(t) :
 
 def moveable_down(t) :
     mov = []
-    for i in range(SIZE - 1, len(t)) :
+    for i in range(len(t) - SIZE) :
         mov.append(t[i])
     return mov
 
 def moveable_up(t) :
     mov = []
-    for i in range(len(t) - SIZE) :
+    for i in range(SIZE, len(t)) :
         mov.append(t[i])
     return mov
 
