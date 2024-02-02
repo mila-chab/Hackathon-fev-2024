@@ -2,7 +2,7 @@ from queue import PriorityQueue
 import copy
 import random
 
-SIZE = 4
+SIZE = 3
 
 def good_grid() :
     return list(range(SIZE*SIZE))
@@ -199,6 +199,7 @@ def solve_Astar(taquin, target) :
 ################################
 
 #Test Astar
+"""
 taquin = random_grid()
 print_taquin(taquin)
 if is_solvable(taquin) :
@@ -208,7 +209,7 @@ if is_solvable(taquin) :
         print_taquin(grid)
 else :
     print("Non solvable !")
-
+"""
 
 """Test dijkstra
 taquin = random_grid()
