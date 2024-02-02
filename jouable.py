@@ -94,13 +94,12 @@ def left(t) :
 
 def graphicplate(t, screen):
         font = pygame.font.Font(None, 100)
-        color = (225,166,236)
+        color = (40,58,82)
         for y in range(SIZE):
             for x in range(SIZE):
                 if t[x + y*SIZE] != 0:
-                    pygame.draw.rect(screen, color, pygame.Rect(16+x*146, 16+y*146, 142, 142), border_radius=20)
-                    screen.blit( font.render(str(t[x + y*SIZE]),1 ,(255,255,255)) , (70 + 144*x , 58 + 144*y) )
-
+                    pygame.draw.rect(screen, color, pygame.Rect(20+x*185, 20+y*185, 180, 180), border_radius=20)
+                    screen.blit( font.render(str(t[x + y*SIZE]),1 ,(255,255,255)) , (90 + 183*x , 74 + 183*y) )
 
 def play_sound(file_path):
     pygame.mixer.init()
@@ -143,7 +142,7 @@ def play() :
        # display_surface.blit(text, textRect)
        # display_surface.fill( green )
         pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
-        pygame.draw.rect(display_surface, marroon_light, pygame.Rect(16, 16, 584, 584))
+        pygame.draw.rect(display_surface, marroon_light, pygame.Rect(0, 0, 600, 600))
         for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
@@ -162,8 +161,7 @@ def play() :
                         for t_ in configurations :
                             t = t_
                             pygame.init()
-                            pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
-                            pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(16, 16, 584, 584))
+                            pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(0, 0, 600, 600))
                             graphicplate(t, display_surface)
                             pygame.display.update()
                             time.sleep(0.5)
@@ -171,8 +169,7 @@ def play() :
         if t == [0,1,2,3,4,5,6,7,8] :
             stop_sound()
             play_sound("balkany oui.mp3")
-            pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
-            pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(16, 16, 584, 584))
+            pygame.draw.rect(display_surface, (141, 104, 147), pygame.Rect(0, 0, 600, 600))
             display_victory_image()
             time.sleep(2000)
             running=False
