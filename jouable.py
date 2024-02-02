@@ -1,5 +1,3 @@
-from random import *
-from time import *
 import pygame
 
 SIZE = 3 
@@ -10,6 +8,15 @@ def print_taquin(taquin) :
         if (k % SIZE == 0) :
             print("\n")
         print(taquin[k], end=" ")
+        
+def string_taquin(taquin) :
+    s = ""
+    for k in range(0, SIZE*SIZE) :
+        if (k % SIZE == 0) :
+            s += "\n"
+        s += str(taquin[k])
+    s += " "
+    return s
 
 print_taquin(taquin)
 
@@ -52,7 +59,7 @@ def up(t) :
         j = i0 + SIZE
         t[i0] = t[j]
         t[j] = 0
-    print_taquin(t) 
+    return t 
 
 def down(t) :
     i0 = vide(t)
@@ -60,7 +67,7 @@ def down(t) :
         j = i0 - SIZE
         t[i0] = t[j]
         t[j] = 0
-    print_taquin(t) 
+    return t 
 
 def right(t) :
     i0 = vide(t)
@@ -68,7 +75,7 @@ def right(t) :
         j = i0 - 1
         t[i0] = t[j]
         t[j] = 0
-    print_taquin(t) 
+    return t 
 
 def left(t) :
     i0 = vide(t)
@@ -76,25 +83,39 @@ def left(t) :
         j = i0 + 1
         t[i0] = t[j]
         t[j] = 0
-    print_taquin(t) 
+    return t 
 
 #fonction de jeu
 def play() :
     t = taquin #a remplacer par rendu de la fonction random taquin quand elle existera
-    print_taquin(taquin)
     running = True
+    white = (255, 255, 255)
+    blue = (0, 0, 128)
     pygame.init()
+    display_surface = pygame.display.set_mode((600, 600))
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render(string_taquin(t), True, blue, white)
+    textRect = text.get_rect()
+    textRect.center = (300, 300)
     while running :
+        display_surface.fill(white)
+        display_surface.blit(text, textRect)
         for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
-                        up(t)
+                        t = up(t)
+                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_DOWN:
-                        down(t)
+                        t = down(t)
+                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_LEFT:
-                        left(t)
+                        t = left(t)                        
+                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_RIGHT:
-                        right(t)
+                        t = right(t)
+                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_q:
                         running = False
+                    pygame.display.update()
+
     pygame.quit()
