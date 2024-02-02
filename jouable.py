@@ -130,6 +130,15 @@ def play() :
                     elif event.key == pygame.K_q:
                         running = False
                 #text = font.render(string_taquin(t), True, blue, white)
+        if t == [1,2,3,4,0,5,6,7,8] :
+            running = False
+            import tkinter as tk
+            fenetre = tk.Tk()
+            photo = tk.PhotoImage(file='balkany.jpg')
+            label = tk.Label(fenetre, image=photo)
+            label.pack()
+             
+            fenetre.mainloop()
         graphicplate(t, display_surface)
         pygame.display.update()
 
