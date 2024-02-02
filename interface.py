@@ -8,11 +8,13 @@ def la_page(page):
 
 ft.app(target=la_page)
 
+t= ft.Text()
+page.add(t)
+
 
 
 """
-page.add(
-    ft.Column([
+t = ft.Column([
       ### header
       ft.Row([
         # message area
@@ -27,5 +29,5 @@ page.add(
          ft.IconButton(...), ..., ft.IconButton(...)]),
       )
     ]
-  )
+page.add(t)
   """
