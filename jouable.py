@@ -1,9 +1,13 @@
 from random import *
 import pygame
+from Dijkstra import solve_Astar, good_grid, random_grid, is_solvable
+import time
 
 SIZE = 3 
-taquin = [0,1,2,3,4,5,6,7,8]
-shuffle(taquin)
+taquin = random_grid()
+while not is_solvable(taquin) :
+    taquin = random_grid()
+
 
 def print_taquin(taquin) :
     for k in range(0, SIZE*SIZE) :
@@ -129,8 +133,19 @@ def play() :
                         t = right(t)
                     elif event.key == pygame.K_q:
                         running = False
+                    elif event.key == pygame.K_s:
+                        configurations = solve_Astar(t, good_grid())
+                        print(configurations)
+                        for t_ in configurations :
+                            t = t_
+                            pygame.init()
+                            pygame.draw.rect(display_surface, marroon, pygame.Rect(10, 10, 585, 585))
+                            pygame.draw.rect(display_surface, marroon_light, pygame.Rect(16, 16, 584, 584))
+                            graphicplate(t, display_surface)
+                            pygame.display.update()
+                            time.sleep(1)
                 #text = font.render(string_taquin(t), True, blue, white)
-        if t == [1,2,3,4,0,5,6,7,8] :
+        if t == [0,1,2,3,4,5,6,7,8] :
             running = False
             import tkinter as tk
             fenetre = tk.Tk()
