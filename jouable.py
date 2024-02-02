@@ -1,7 +1,10 @@
+from random import *
+from time import *
 import pygame
 
 SIZE = 3 
 taquin = [0,1,2,3,4,5,6,7,8]
+shuffle(taquin)
 
 def print_taquin(taquin) :
     for k in range(0, SIZE*SIZE) :
@@ -55,7 +58,7 @@ def vide(t) :
         
 def up(t) :
     i0 = vide(t)
-    if i0 in moveable_down(t) :
+    if 0 in moveable_down(t) :
         j = i0 + SIZE
         t[i0] = t[j]
         t[j] = 0
@@ -63,7 +66,7 @@ def up(t) :
 
 def down(t) :
     i0 = vide(t)
-    if i0 in moveable_up(t) :
+    if 0 in moveable_up(t) :
         j = i0 - SIZE
         t[i0] = t[j]
         t[j] = 0
@@ -71,7 +74,7 @@ def down(t) :
 
 def right(t) :
     i0 = vide(t)
-    if i0 in moveable_left(t) :
+    if 0 in moveable_left(t) :
         j = i0 - 1
         t[i0] = t[j]
         t[j] = 0
@@ -79,7 +82,7 @@ def right(t) :
 
 def left(t) :
     i0 = vide(t)
-    if i0 in moveable_right(t) :
+    if 0 in moveable_right(t) :
         j = i0 + 1
         t[i0] = t[j]
         t[j] = 0
@@ -104,18 +107,15 @@ def play() :
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         t = up(t)
-                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_DOWN:
                         t = down(t)
-                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_LEFT:
                         t = left(t)                        
-                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_RIGHT:
                         t = right(t)
-                        text = font.render(string_taquin(t), True, blue, white)
                     elif event.key == pygame.K_q:
                         running = False
-                    pygame.display.update()
+                text = font.render(string_taquin(t), True, blue, white)
+                pygame.display.update()
 
     pygame.quit()
