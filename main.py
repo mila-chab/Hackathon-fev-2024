@@ -1,14 +1,18 @@
 
 SIZE = 3
 
-taquin = [0,1,2,3,4,5,6,7,8]
+def new_grid() :
+    return list(range(SIZE*SIZE))
 
 def print_taquin(taquin) :
+    end = len(str(SIZE*SIZE-1))
     for k in range(0, SIZE*SIZE) :
         if (k % SIZE == 0) :
             print("\n")
-        print(taquin[k], end=" ")
-        
+        long = len(str(taquin[k]))
+        print(taquin[k], end=" "*(end-long + 1))
+
+taquin = new_grid  
 print_taquin(taquin)
 
 
