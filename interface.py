@@ -1,11 +1,14 @@
 import flet as ft
 
+
 def la_page(page):
-    t = ft.Text(value="ouais ouais ouais c le wei", color = "blue")
+    t = ft.Text(value="ouais ouais ouais c le wei", color = "green")
     page.controls.append(t)
-    page.update
+    page.update()
 
 ft.app(target=la_page)
+
+
 
 """
 page.add(
