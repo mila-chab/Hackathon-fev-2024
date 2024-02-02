@@ -93,13 +93,22 @@ def left(t) :
 
 def graphicplate(t, screen):
         font = pygame.font.Font(None, 100)
-        color = (40,58,82)
+        color = (225,166,236)
         for y in range(SIZE):
             for x in range(SIZE):
                 if t[x + y*SIZE] != 0:
                     pygame.draw.rect(screen, color, pygame.Rect(16+x*146, 16+y*146, 142, 142), border_radius=20)
                     screen.blit( font.render(str(t[x + y*SIZE]),1 ,(255,255,255)) , (70 + 144*x , 58 + 144*y) )
-                    
+
+
+def play_sound(file_path):
+    pygame.mixer.init()
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
+
+def stop_sound():
+    pygame.mixer.music.stop()
+
 #fonction de jeu
 def play() :
     t = taquin #a remplacer par rendu de la fonction random taquin quand elle existera
@@ -115,6 +124,7 @@ def play() :
     text = font.render(string_taquin(t), True, blue, white)
     textRect = text.get_rect()
     textRect.center = (300, 300)
+    play_sound("tetris.mp3")
     while running :
        # display_surface.fill(white)
        # display_surface.blit(text, textRect)
